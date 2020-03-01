@@ -1,0 +1,780 @@
+﻿
+
+Angular    Features
+=====================================================
+1.Dependency Injection (Way of initializing dependencies)
+  Module A=> Module B  =>Module C
+  
+2.Two way data binding
+3.MVC
+4.Testing
+5.Modules,Directives,Filters,Services, Controllers (Components and Templates) etc....
+  
+
+Module =>It is a Type Script class =>    @NgModule
+Directive => It is a Type Scricpt class  @Directive
+Pipe => It is a Type Scricpt class       @Pipe 
+Services=> It is a Type Scricpt class    @Injectable
+Components => It is a Type Scricpt class @Component
+  
+  
+  
+ What is module ?
+
+* Module is a container for services,directives,filter,components, otherd modules
+
+
+
+         AngularJS (1.6)                           Angular (8.0)
+
+1. Not developed by keeping                       1.Developed specially for
+    mobile devlopment in mid.                        Mobile development
+
+2. Basic building block is                        2.Basic building block is
+    Java Script Function                             a TypeScript class
+
+3.Controllers                                    3.Components and templates
+
+4.filters    (format,sort,search)                 4.pipes
+
+5.services                                        5.providers
+
+6.directives                                     6.directive   
+        ng-if                                      *ngIf,*ngFor,*ngSwitchCase
+        ng-repeat                                  ngModel,ngClass ,ngStyle
+
+
+7.routing   (function based)                    7.routing   (JSON based) 
+
+
+8.development is easy                           8.complicated
+
+
+
+Browser understands Java Script but not Type Script
+
+Type Script should be converted into JS and 
+genderated JS should be used into HTML
+
+
+
+Angular Team has given   "@angular/cli"  tool to make Angular development easy. 
+
+
+To install Angular CLI tool
+
+Step 1
+======
+Install Node JS
+
+set path=C:\node-v8.12.0-win-x64;
+
+
+1)  node -v
+
+2)  npm -v 
+
+
+  Global installation  (Open Internet connection is mandatory)
+ =====================
+     npm install -g @angular/cli  <enter>  
+
+Local Installation
+=========================
+ npm install  @angular/cli  <enter> 
+
+
+set path=C:\node-v8.12.0-win-x64;D:\Pradep-Syntel\angular6\angular6-cli\node_modules\.bin;
+
+
+
+C:\Users\PC5037971>node -v
+v8.11.1
+
+C:\Users\PC5037971>npm -v
+5.6.0
+
+C:\Users\PC5037971>ng -v
+
+     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+
+
+Angular CLI: 6.2.1
+Node: 8.11.1
+OS: win32 x64
+Angular:
+...
+
+Package                      Version
+------------------------------------------------------
+@angular-devkit/architect    0.8.1
+@angular-devkit/core         0.8.1
+@angular-devkit/schematics   0.8.1
+@angular/cli                 6.2.1
+@schematics/angular          0.8.1
+@schematics/update           0.8.1
+rxjs                         6.2.2
+typescript                   2.9.2
+
+
+C:\Users\PC5037971>
+
+
+	
+	
+
+1.To create a angular project
+
+         ng new <project-name>  <enter>
+
+   Ex.  ng new angular-app-day1 <enter>
+
+2.To run a angular project
+
+    go to your project in command prompt
+
+   c:\.... \angular-app-day1>npm start   <enter>   or ng serve 
+
+
+Angular cli commands
+=====================   
+
+ng g class <class-name>  <enter>
+ng g component <component-name>  <enter>
+ng g service  <service-name>  <eneter>
+ng g pipe <pipe-name>  <eneter>
+ng g  directive <directive-name>  <eneter>
+ng g module <module-name>  <enter>
+ng g module <module-name>   --routing <enter>
+   
+   
+
+Angular Component is responsible for
+
+1.What to display
+2.How to display
+3.Where to display
+4.Where to inject
+
+
+
+
+
+
+template:'   ' If HTML code is <=3
+templateUrl:'app.com.html' If HTML code is >3
+
+
+
+
+Angular Routing
+====================
+ <ul class="nav navbar-nav">
+      <li class="active"><a [routerLink]="['/home']">Home</a></li>
+      <li><a [routerLink]="['/basics']">Angular Basics</a></li>
+      <li><a [routerLink]="['/pipes']">Angular Pipes</a></li>
+      <li><a [routerLink]="['/technologies']">Technologies</a></li>
+</ul>
+
+
+create a routing module
+==========================
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { AngularBasicsComponent } from '../angular-basics/angular-basics.component';
+import { TechnologiesComponent } from '../technologies/technologies.component';
+import { AngularPipesComponent } from '../angular-pipes/angular-pipes.component';
+
+const routes: Routes = [
+  {path:'basics',component:AngularBasicsComponent},
+  {path:'technologies',component:TechnologiesComponent},
+  {path:'pipes',component:AngularPipesComponent},
+  {path:'home',component:AngularBasicsComponent},
+  {path:'**',redirectTo:'basics'}
+  ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class Angular6RoutingModule { }
+
+import routing module in Appmodule
+====================================
+
+
+@NgModule({
+  declarations: [ //components,pipes,directive
+    AppComponent, AngularBasicsComponent, AngularPipesComponent, TechnologiesComponent
+  ],
+  imports: [ //modules
+    BrowserModule,
+    Angular6RoutingModule,
+    RouterModule
+  ],
+  providers: [],//services
+  bootstrap: [AppComponent]//compnents
+})
+export class AppModule { }
+
+
+
+
+
+Angular Binding Types
+========================
+1:Interpolation   {{title}}  min="{{min}}"  
+
+2.One way databinding [ngModel]="day"
+
+3.Two way databinding [(ngModel)]="day"
+
+4.Property binding :[max]="max"
+
+5.Event Binding  (click)="showHide()"
+
+
+
+Directives add functionaliites to HTML elements
+
+1.Attribute Directives   :Don't change HTML DOM Structure
+========================
+[ngStyle]
+[ngClass]
+
+            [ngClass]="'A B C D'" 
+			[ngClass]="['A','B','C','D']"
+			[ngClass]="{'A':show,'B':show,'C':hide,'D':hide}"
+			
+
+
+[ngSwitch]
+[ngModel] -> for input elements only =>need to import FormsModule from @angular/forms
+[routerLink]
+[queryParams]
+
+2.Structural Directives  : change HTML DOM Structure
+========================
+*ngIf
+*ngFor
+*ngSwitchCase
+*ngSwitchDefault
+
+3.Componenet Directives
+======================
+<app-root></app-root>
+<ng-template></ng-template>
+<router-outlet></router-outlet>
+
+
+
+
+
+
+
+
+
+
+
+Custom Attribiute Directive => ElementRef,Renderer2
+============================
+
+<div   [fgColor]="'red'"    [bgColor]="'cyan'">   Hello Students!!!   </div>
+
+
+Custom Structural Directive => TemplateRef,ViewcontainerRef
+============================
+<div   *ngShow="true">   Hello Students!!!   </div>
+<div   *ngHide="true">   Hello Students!!!   </div>
+
+
+
+
+
+
+
+
+
+ngClass
+=========
+<some-element [ngClass]="'first second'">...</some-element>
+
+<some-element [ngClass]="['first', 'second']">...</some-element>
+
+<some-element [ngClass]="{'first': true, 'second': true, 'third': false}">...</some-element>
+
+<some-element [ngClass]="stringExp|arrayExp|objExp">...</some-element>
+
+<some-element [ngClass]="{'class1 class2 class3' : true}">...</some-element>
+
+
+ngStyle
+======
+<some-element [ngStyle]="{'font-style': styleExp}">...</some-element>
+
+<some-element [ngStyle]="{'max-width.px': widthExp}">...</some-element>
+
+<some-element [ngStyle]="objExp">...</some-element>
+
+
+ ngSwitch
+*ngSwitchCase
+*ngSwitchDefault
+*ngIf
+*ngFor
+
+<container-element [ngSwitch]="switch_expression">
+  <some-element *ngSwitchCase="match_expression_1">...</some-element>
+  <some-element *ngSwitchCase="match_expression_2">...</some-element>
+  <some-other-element *ngSwitchCase="match_expression_3">...</some-other-element>
+  <ng-container *ngSwitchCase="match_expression_3">
+    <!-- use a ng-container to group multiple root nodes -->
+    <inner-element></inner-element>
+    <inner-other-element></inner-other-element>
+  </ng-container>
+  <some-element *ngSwitchDefault>...</some-element>
+</container-element>
+
+
+
+
+unsername :trnguser1
+password  :Syntel123
+
+day2
+====
+
+ng g class <class-name>  <enter>
+ng g component <component-name>  <enter>
+ng g service  <service-name>  <eneter>
+ng g pipe <pipe-name>  <eneter>
+ng g  directive <directive-name>  <eneter>
+ng g module <module-name>  <enter>
+ng g module <module-name>   --routing <enter>
+
+
+
+11 Pipes(Filters)
+       =>sort ,format and search the data
+===========================================================
+String
+=========
+lowercase
+uppercase
+slice
+titlecase  (angular 4.0)
+
+array
+=====
+slice
+
+number
+=======
+number
+            salary:number:'9.2-3'
+           
+
+currency
+
+            salary|currency:'Rs'
+ 
+percent     
+            variable|percent    
+  
+
+
+date
+=======
+date
+        dob:date:'shortDate'
+        dob:date:'mediumDate'
+        dob:date:'longDate'
+        dob:date:'fullDate'
+        dob:date:'dd-MMM-yyyy'
+
+        dob:date:'shortTime'
+        dob:date:'mediumTime'
+        dob:date:'longTime'
+        dob:date:'fullTime'
+        dob:date:'hh:mm:ss'
+
+        dob:date:'short'
+        dob:date:'medium'
+        dob:date:'long'
+        dob:date:'full'
+        dob:date:'dd-MMM-yyyy hh:mm:ss'
+
+				
+JS object
+=========
+      json
+      keyvalue (angular6)
+  
+	  
+	  
+	  
+	  
+	  
+Observable 
+==========
+async  : 
+
+
+employees=[
+    {id:12,name:'Ram chinchole',salary:2345500,variable:0.15,
+    city:'Pune',mobile:'8149976894',pan:'cmxac9845d',
+    doj:new Date("February 01,2011"),isMarried:true,gender:1
+   },
+   {id:23,name:'Sachin chinchole',salary:324242.456784343,variable:0.10,
+   city:'Mumbai',mobile:'7123456732',pan:'abxac9845a',
+   doj:new Date("April 01,2013"),isMarried:true,gender:1
+  },
+  
+  {id:11,name:'Ameya Joshi',salary:34343.456784343,variable:0.11,
+  city:'Mumbai',mobile:'7788554433',pan:'abcac9845c',
+  doj:new Date("June 01,2018"),isMarried:true,gender:1
+ },
+ 
+ {id:14,name:'Prachitee chinchole',salary:45345.456784343,variable:0.20,
+ city:'Pune',mobile:'9158652627',pan:'xyzac9845d',
+ doj:new Date("June 01,2010"),isMarried:false,gender:2
+},
+
+{id:21,name:'Prachi chinchole',salary:4345345.456784343,variable:0.15,
+city:'Solapur',mobile:'9890732222',pan:'pvcac9845d',
+doj:new Date("February 01,2017"),isMarried:true,gender:2
+},
+
+{id:17,name:'Mahesh chinchole',salary:345345.34324,variable:0.12,
+city:'Solapur',mobile:'7158652622',pan:'amxac9845d',
+doj:new Date("May 01,2013"),isMarried:false,gender:3
+},
+
+];
+
+
+
+
+
+
+
+Custom Pipe
+=============
+gender
+        1->Male
+		2->Female
+        3->Not disclosed 		
+ 
+orderBy
+
+To write a custom pipe we have to create class which implements PipeTransform i/f
+and we have to overide transform method in it.
+
+
+             
+employees|orderBy ->sort employess by id in ascending order
+employees|orderBy:'id' ->sort employess by id in ascending order
+employees|orderBy:'name' ->sort employess by name in ascending order
+employees|orderBy:'name':true ->sort employess by name in descending order
+
+
+To install ng2-search-filter 
+
+c:\>angular6-app-template>npm i ng2-search-filter
+
+
+
+Angular Services
+=================
+
+HttpClient  from  @angular/common/http  => to invoke rest api
+
+HttpClientModule
+
+
+
+1.Component Level
+
+2.Module Level (By default)
+
+angular4
+==========   
+@Injectable()
+export class UsersService {
+  constructor() { }
+}
+
+
+@NgModule({
+  providers: [UsersService],//services
+})
+export class AppModule { }
+
+
+@Component({
+  providers: [UsersService],//services
+})
+export class UsersListComponent { }
+
+ 
+angular5
+==========   
+@Injectable({providedIn: 'root' })
+export class UsersService {
+  constructor() { }
+}
+
+
+
+
+Angular 5=>
+
+   HttpClient :to invoke resfull api ,You have to include HttpClientModule from
+   @angular/common/http
+  
+   
+day5
+=====
+1.Route Params and Query Params
+
+Query Params
+===============
+https://jsonplaceholder.typicode.com/posts?userId=1
+
+Route Param
+============
+https://jsonplaceholder.typicode.com/users/1
+
+To retrieve Route nad Query Params Inject ActivateRoute in Component
+
+
+ constructor(private us:UsersService,private route:ActivatedRoute) { 
+    console.log("=========UsersComponent created ================");
+	//to retrive rout param
+	 this.userId=this.route.snapshot.params.userId;
+	 
+  //to retrive queryParams param
+	 this.userId=this.route.snapshot.queryParams.userId;
+		
+  }
+  
+
+Pagination
+
+
+
+
+
+
+
+
+
+
+
+
+  
+2.Spring Boot Integration (CRUD Application)
+
+3.Nested Components
+      ParentComponent -> ChildComponent   -> @Input()
+      ChildComponent ->  ParentComponent   ->@Output()
+
+	 Nested <=== Country	<===  State <===  City
+	  
+	
+
+
+
+
+
+
+
+
+
+
+	
+3.angular custom directives
+4.angular form validattion
+
+
+
+Form Validation
+===============
+1.Template Driven Forms Features
+
+Easy to use
+
+Suitable for simple scenarios and fails for complex scenarios
+
+Similar to AngularJS
+
+Two way data binding(using [(ngModel)] syntax)
+
+Minimal component code
+
+Automatic track of the form and its data(handled by Angular)
+
+Unit testing is another challenge
+
+
+2/Reactive Forms or Model driven Features
+===========================================
+More flexible, but needs a lot of practice
+Handles any complex scenarios
+No data binding is done (immutable data model preferred by most developers)
+More component code and less HTML markup
+Reactive transformations can be made possible such as
+Handling a event based on a debounce time
+Handling events when the components are distinct until changed
+Adding elements dynamically
+Easier unit testing
+
+
+   FormBuilder,FormGroup,Validator
+
+We need to add ReactiveFormsModule from angular/forms  in app.module.ts
+
+
+
+Types of Guards
+================
+
+1.CanActivate:
+	 Controls if a route can be activated.
+
+2.CanActivateChild:
+	 Controls if children of a route can be activated.
+
+3.CanLoad: 
+	Controls if a route can even be loaded. This becomes useful for feature modules
+	that are lazy loaded. They won’t even load if the guard returns false.
+
+4.CanDeactivate: 
+	Controls if the user can leave a route. Note that this guard doesn’t prevent the
+	user from closing the browser tab or navigating to a different address. 
+	It only prevents actions from within the application itself.
+
+
+  ng g s services/My
+
+  ng g guard guards/Multi
+
+
+
+
+@ViewChild
+===========
+    1.To Inject The Component
+    2.To Inject The Directive
+    3.To Inject The ElementRefs
+
+
+
+
+
+
+
+
+5.View Child
+
+1. to inject The reference of another component
+2. to inject The reference of another directive
+3. to inject The reference of another Elements
+
+6.Angular Life Cycle
+
+7.Angular Matarial
+8.testing
+
+
+
+
+@Directive()
+class A{
+}
+
+
+@Pipe()
+class A{
+
+}
+
+
+
+
+@NgModule
+class A{
+
+}
+
+
+
+
+@Component()
+class A
+{
+
+
+}
+
+
+@Injectable
+class A{
+
+}
+
+
+
+
+class Library{
+private List<Book> books;
+private List<Member> members;
+
+}
+
+
+
+
+angular6 Materila Referal site
+=================================
+
+https://code.tutsplus.com/tutorials/how-to-use-material-design-in-angular-6--cms-31671
+
+Install below modules/packages 
+
+
+npm i @angular/cdk
+npm i @angular/material
+npm i hammerjs
+
+
+
+These schematics can easily be installed with the ng generate command as follows:
+
+ng generate @angular/material:material-table --name <component-name>: generates a component that displays data with a data table
+
+
+ng generate @angular/material:material-nav --name <component-name>: generates a component with a side navigation and a toolbar
+
+
+ng generate @angular/material:material-dashboard --name <component-name>: generates a component that contains a dynamic grid list of cards.
+
+
+
+
+
+Angular Material provides us with four themes.
+
+
+deeppurple-amber.css
+
+indigo-pink.css
+
+pink-bluegrey.css
+
+purple-green.css
