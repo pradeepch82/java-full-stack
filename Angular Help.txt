@@ -765,7 +765,7 @@ ng generate @angular/material:material-nav --name <component-name>: generates a 
 ng generate @angular/material:material-dashboard --name <component-name>: generates a component that contains a dynamic grid list of cards.
 
 
-
+g
 
 
 Angular Material provides us with four themes.
