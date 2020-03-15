@@ -674,17 +674,22 @@ Types of Guards
     3.To Inject The ElementRefs
 
 
+@ViewChild(NumberComponent,{static:false})
+n:NumberComponent;
+
+@ViewChild(FgColorDirective,{static:false})
+f:FgColorDirective;
+
+@ViewChild("name",{static:false})
+name:ElementRef<any>;
+
+@ViewChild("city",{static:false})
+city:ElementRef<any>;
 
 
 
 
 
-
-5.View Child
-
-1. to inject The reference of another component
-2. to inject The reference of another directive
-3. to inject The reference of another Elements
 
 6.Angular Life Cycle
 
