@@ -1,4 +1,10 @@
 ﻿
+ Case Study
+ ==========
+ Try to convert this app in Spring Boot
+ 
+ https://github.com/DanWahlin/Angular-JumpStart
+ 
 
 Angular    Features
 =====================================================
